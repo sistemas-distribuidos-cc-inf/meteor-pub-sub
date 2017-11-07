@@ -1,0 +1,12 @@
+<template name="sub">
+  <h2>Sub</h2>
+  {{#each topics}}
+    <button {{disabled}}> {{name}} {{active}}</button>
+  {{/each}}
+  <div class="">
+    <h3>Subscriptions</h3>
+    {{#each subscriptions}}
+      <p>{{time}} <strong>Topic:</strong> {{topic}} - <strong>Sumary:</strong> {{sumary}}</p>
+    {{/each}}
+  </div>
+</template>
