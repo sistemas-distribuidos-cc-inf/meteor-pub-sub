@@ -34,6 +34,21 @@ const sub_fn = function () {
   }
   function rxTopic(topic) {
     return Object.defineProperties({}, {
+      data: {
+        get() {
+          debugger
+          dep.depend();
+          if (topic.name === 'Soccer') {
+            return Soccer.find().fetch()
+          } else if (topic.name === 'Policy') {
+            return Policy.find().fetch();
+          } else if (topic.name === 'Culinary') {
+            return Culinary.find().fetch();
+          } else if (topic.name === 'Movies') {
+            return Movies.find().fetch();
+          }
+        }
+      },
       name: {
         get() {
           dep.depend();
@@ -58,21 +73,14 @@ const sub_fn = function () {
             return 'disabled';
         },
       },
-      subscription: {
-        get() {
-          dep.depend();
-          return topic.subscription;
-        },
-      },
     });
   }
   function subscriptions_fn() {
-    debugger
     _topics.forEach((t) => {
-      if(t.active && !t.subscription) {
+      if (t.active && !t.subscription_done) {
         // Tracker.autorun(() => {          
-          Meteor.subscribe(t.name);
-          t.subscription = true;
+        Meteor.subscribe(t.name);
+        t.subscription_done = true;
         // });
       }
     });
@@ -92,41 +100,22 @@ const sub_fn = function () {
   return self;
 }
 
-const sub = sub_fn();
+let sub;
 
-
+Template.sub.onCreated(function () {
+  sub = sub_fn();
+});
 Template.sub.helpers({
-  subscriptions() {
-    return [
-      {
-        time: new Date().getTime(),
-        topic: 'soccer',
-        sumary: 'Donec nunc purus, euismod et.'
-      },
-      {
-        time: new Date().getTime(),
-        topic: 'movies',
-        sumary: 'Donec nunc purus, euismod et.'
-      },
-      {
-        time: new Date().getTime(),
-        topic: 'culinary',
-        sumary: 'Donec nunc purus, euismod et.'
-      },
-      {
-        time: new Date().getTime(),
-        topic: 'policy',
-        sumary: 'Donec nunc purus, euismod et.'
-      },
-    ]
-  },
   topics() {
     return sub.topics;
+  },
+  subscription() {
+    return this.data;
   }
 });
 
-Template.sub.events({ 
-  'click button': function(event, template) { 
+Template.sub.events({
+  'click button': function (event, template) {
     this.active = !this.active;
-  } 
+  }
 });
