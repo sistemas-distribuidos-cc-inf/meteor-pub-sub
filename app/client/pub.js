@@ -37,7 +37,7 @@ Template.pub.events({
   },
   'click .Policy': function (event, template) {
     const author = document.querySelector('input').value;
-    if(!author) return alert('enter the name of the author').
+    if(!author) return alert('enter the name of the author');
     Meteor.call('Policy', author, function (error, success) {
       if (error) {
         console.log('error', error);
