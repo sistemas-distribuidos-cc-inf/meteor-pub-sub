@@ -26,7 +26,7 @@ Meteor.methods({
     };
     return Movies.insert(obj);
   },
-  Policy() {
+  Policy(author) {
     const obj = {
       author,
       time: Date(),
