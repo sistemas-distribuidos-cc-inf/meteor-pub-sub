@@ -3,13 +3,20 @@
 </head>
 
 <template name="ApplicationLayout">
-  {{> yield}}
+  <div class="container theme-showcase">
+    <div class="jumbotron">
+
+    </div>
+  </div>
 </template>
 
 <template name="main">
-  <h1>Welcome to Meteor Pub/Sub!</h1>
-  <button class="pub">Pub</button>
-  <button class="sub">Sub</button>  
+  <div class="container-fluid theme-showcase">
+    <div class="jumbotron">
+
+      <h1>Welcome to Meteor Pub/Sub!</h1>
+      <button type="button" class="btn btn-primary btn-lg btn-block pub">Pub</button>
+      <button type="button" class="btn btn-primary btn-lg btn-block sub">Sub</button>
+    </div>
+  </div>
 </template>
-
-

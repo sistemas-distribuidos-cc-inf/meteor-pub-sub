@@ -1,11 +1,16 @@
 <template name="pub">
-  <h2>Pub</h2>
-  <button class="Soccer">Soccer</button>
-  <button class="Movies">Movies</button>
-  <button class="Culinary">Culinary</button>
-  <button class="Policy">Policy</button>
-  <br/>
-  <br/>
-  <label>Author</label>
-  <input>
+  <div class="container-fluid theme-showcase">
+    <h2>Pub
+      <a href="/sub" type="button" class="btn btn-primary btn-sm">Go to sub</a>
+    </h2>
+    <div class="col">
+      <button type="button" class="btn btn-outline-primary Soccer">Soccer</button>
+      <button type="button" class="btn btn-outline-secondary Movies">Movies</button>
+      <button type="button" class="btn btn-outline-success Culinary">Culinary</button>
+      <button type="button" class="btn btn-outline-info Policy">Policy</button>
+      <div class="row" style="margin-top: 2%;">
+      <input class="form-control form-control-lg" type="text" id="inputLarge" placeholder="Author">
+      </div>  
+    </div>
+  </div>
 </template>
